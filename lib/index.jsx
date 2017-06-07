@@ -36,8 +36,10 @@ class Gridifier extends React.Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
+    this.disconnectRemovedChildren(nextProps.children)
+
     const nextGridSettings = this.gridSettingsFromProps(nextProps)
-    this.updateGridSettings(nextGridSettings)
+    this.updateGridSettings(nextGridSettings, nextState)
   }
 
   componentDidUpdate(nextProps, nextState) {
@@ -69,7 +71,7 @@ class Gridifier extends React.Component {
     }
   }
 
-  updateGridSettings (nextGridSettings) {
+  updateGridSettings (nextGridSettings, nextState) {
     const changes = _.omitBy(nextGridSettings, function(v, k) {
       return nextState.gridSettings[k] ? nextState.gridSettings[k] === v : false;
     })
@@ -80,6 +82,17 @@ class Gridifier extends React.Component {
           break
         default:
           this._grid.set(k, v)
+      }
+    })
+  }
+
+  disconnectRemovedChildren (nextChildren) {
+    const nextChildrenIds = nextChildren.map((child) => child.props.id)
+    const children = this._grid.collectConnected()
+    children.forEach((child) => {
+      if (!nextChildrenIds.includes(child.id)) {
+        console.log(`Disconnecting item #${child.id} ...`)
+        this._grid.disconnect(child)
       }
     })
   }

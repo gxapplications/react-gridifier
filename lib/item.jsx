@@ -15,7 +15,7 @@ class GridifierItem extends React.Component {
     return (
       <div
         className={classNames('rg-grid-item', this.props.className)}
-        key={this.state.id} style={{ visibility: 'hidden' }}
+        key={this.state.id} id={this.state.id} style={{ visibility: 'hidden' }}
       >
         <div className="rg-item-wrapper">
           {this.props.children}
