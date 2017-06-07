@@ -1,0 +1,14 @@
+.red.card {
+    height: 100px !important;
+    margin: 0 !important;
+}
+
+.blue.card {
+    height: 50px !important;
+    margin: 0 !important;
+}
+
+.rg-item-wrapper {
+    padding: 5px;
+}
+
