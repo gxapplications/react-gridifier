@@ -1,6 +1,6 @@
 'use strict'
 
-import gridifier from 'gridifier'
+import JqGridifier from 'gridifier'
 import $ from 'jquery'
 import _ from 'lodash'
 import React from 'react'
@@ -10,7 +10,7 @@ import PropTypes from 'prop-types'
 import './common.css'
 
 class Gridifier extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       gridSettings: this.gridSettingsFromProps(this.props)
@@ -20,11 +20,11 @@ class Gridifier extends React.Component {
 
   componentDidMount () {
     this._gridDOMNode = ReactDOM.findDOMNode(this.refs.grid)
-    this._grid = new gridifier(this._gridDOMNode, this.state.gridSettings)
+    this._grid = new JqGridifier(this._gridDOMNode, this.state.gridSettings)
 
-    this.updateDragHandlerVisibility()
+    this.updateEditHandlersVisibility()
+    this.connectAddedChildren()
 
-    this._grid.appendNew()
     console.log('Component did mount')
   }
 
@@ -35,17 +35,16 @@ class Gridifier extends React.Component {
     return true // to rework for perfs?
   }
 
-  componentWillUpdate(nextProps, nextState) {
+  componentWillUpdate (nextProps, nextState) {
     this.disconnectRemovedChildren(nextProps.children)
 
     const nextGridSettings = this.gridSettingsFromProps(nextProps)
     this.updateGridSettings(nextGridSettings, nextState)
   }
 
-  componentDidUpdate(nextProps, nextState) {
-    this.updateDragHandlerVisibility()
-
-    this._grid.appendNew()
+  componentDidUpdate (nextProps, nextState) {
+    this.updateEditHandlersVisibility()
+    this.connectAddedChildren()
   }
 
   componentWillUnmount () {
@@ -54,7 +53,7 @@ class Gridifier extends React.Component {
 
   render () {
     return (
-      <div ref="grid" className={this.props.className}>
+      <div ref='grid' className={this.props.className}>
         {this.props.children}
       </div>
     )
@@ -63,27 +62,41 @@ class Gridifier extends React.Component {
   gridSettingsFromProps (nextProps) {
     return {
       class: 'rg-grid-item',
+      grid: nextProps.grid || 'vertical',
+      prepend: nextProps.prepend || 'mirrored',
+      append: nextProps.append || 'default',
+      intersections: nextProps.intersections,
+      // align: nextProps.align || null,
+
       dragifier: 'rg-drag-handler',
       dragifierMode: 'i', // or 'd',
 
       // above does not belongs to gridifier, but used anyway by react component
-      draggable: nextProps.draggable
+      editable: nextProps.editable
     }
   }
 
   updateGridSettings (nextGridSettings, nextState) {
-    const changes = _.omitBy(nextGridSettings, function(v, k) {
-      return nextState.gridSettings[k] ? nextState.gridSettings[k] === v : false;
+    const changes = _.omitBy(nextGridSettings, function (v, k) {
+      return nextState.gridSettings[k] ? nextState.gridSettings[k] === v : false
     })
     _.forOwn(changes, (v, k) => {
       switch (k) {
-        case 'draggable':
+        case 'editable':
           v ? this._grid.dragifierOn() : this._grid.dragifierOff()
           break
         default:
-          this._grid.set(k, v)
+          this._grid.set(k, v).reposition()
       }
     })
+  }
+
+  connectAddedChildren () {
+    if (this.props.insertionMode === 'prepend') {
+      this._grid.prependNew()
+    } else {
+      this._grid.appendNew()
+    }
   }
 
   disconnectRemovedChildren (nextChildren) {
@@ -97,21 +110,31 @@ class Gridifier extends React.Component {
     })
   }
 
-  updateDragHandlerVisibility() {
-    if (this.props.draggable) {
-      $('.rg-drag-handler', this._gridDOMNode).show()
+  updateEditHandlersVisibility () {
+    if (this.props.editable) {
+      $('.rg-edition-tool', this._gridDOMNode).show()
     } else {
-      $('.rg-drag-handler', this._gridDOMNode).hide()
+      $('.rg-edition-tool', this._gridDOMNode).hide()
+      // TODO : remove click event listener
     }
   }
 }
 
 Gridifier.propTypes = {
-  draggable: PropTypes.bool.isRequired
+  editable: PropTypes.bool.isRequired,
+  insertionMode: PropTypes.oneOf(['append', 'prepend']).isRequired,
+
+  grid: PropTypes.oneOf(['vertical', 'horizontal']),
+  prepend: PropTypes.oneOf(['mirrored', 'default', 'reversed']),
+  append: PropTypes.oneOf(['default', 'reversed']),
+  intersections: PropTypes.bool.isRequired,
+  align: PropTypes.oneOf(['top', 'center', 'bottom', 'left', 'right'])
 }
 
 Gridifier.defaultProps = {
-  draggable: false
+  editable: false,
+  insertionMode: 'append',
+  intersections: true
 }
 
 export default Gridifier
