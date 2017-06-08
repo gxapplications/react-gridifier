@@ -60,13 +60,12 @@ class Gridifier extends React.Component {
   }
 
   gridSettingsFromProps (nextProps) {
-    return {
+    const settings = {
       class: 'rg-grid-item',
       grid: nextProps.grid || 'vertical',
       prepend: nextProps.prepend || 'mirrored',
       append: nextProps.append || 'default',
       intersections: nextProps.intersections,
-      // align: nextProps.align || null,
 
       dragifier: 'rg-drag-handler',
       dragifierMode: 'i', // or 'd',
@@ -74,6 +73,8 @@ class Gridifier extends React.Component {
       // above does not belongs to gridifier, but used anyway by react component
       editable: nextProps.editable
     }
+    if (nextProps.align) settings.align = nextProps.align // null|undefined not working. Key must be omitted in the case
+    return settings
   }
 
   updateGridSettings (nextGridSettings, nextState) {
@@ -115,7 +116,6 @@ class Gridifier extends React.Component {
       $('.rg-edition-tool', this._gridDOMNode).show()
     } else {
       $('.rg-edition-tool', this._gridDOMNode).hide()
-      // TODO : remove click event listener
     }
   }
 }
