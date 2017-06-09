@@ -45,13 +45,15 @@ class App extends React.Component {
         <button onClick={this.addItem.bind(this)}>Add DOM item</button>
         <button onClick={this.toggleEditionMode.bind(this)}>Toggle edition mode</button>
         <hr />
-        <Gridifier className='row' editable={this.state.editable}>
+        <Gridifier className='row' editable={this.state.editable} sortDispersion>
           {this.state.items}
         </Gridifier>
         <hr />
         <Gridifier className='row' editable={false}
           intersections={false}
           insertionMode='prepend'
+          toggleTime={2000}
+          coordsChangeTime={600}
         >
           {this.state.items}
         </Gridifier>

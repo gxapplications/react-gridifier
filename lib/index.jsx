@@ -66,6 +66,12 @@ class Gridifier extends React.Component {
       prepend: nextProps.prepend || 'mirrored',
       append: nextProps.append || 'default',
       intersections: nextProps.intersections,
+      sortDispersion: nextProps.sortDispersion,
+      loadImages: nextProps.loadImages,
+      toggleTime: nextProps.toggleTime || 500,
+      coordsChangeTime: nextProps.coordsChangeTime || 300,
+      toggleTiming: nextProps.toggleTiming,
+      coordsChangeTiming: nextProps.coordsChangeTiming,
 
       dragifier: 'rg-drag-handler',
       dragifierMode: 'i', // or 'd',
@@ -128,13 +134,23 @@ Gridifier.propTypes = {
   prepend: PropTypes.oneOf(['mirrored', 'default', 'reversed']),
   append: PropTypes.oneOf(['default', 'reversed']),
   intersections: PropTypes.bool.isRequired,
-  align: PropTypes.oneOf(['top', 'center', 'bottom', 'left', 'right'])
+  align: PropTypes.oneOf(['top', 'center', 'bottom', 'left', 'right']),
+  sortDispersion: PropTypes.bool.isRequired,
+  loadImages: PropTypes.bool.isRequired,
+  toggleTime: PropTypes.number,
+  coordsChangeTime: PropTypes.number,
+  toggleTiming: PropTypes.string,
+  coordsChangeTiming: PropTypes.string
 }
 
 Gridifier.defaultProps = {
   editable: false,
   insertionMode: 'append',
-  intersections: true
+  intersections: true,
+  sortDispersion: false,
+  loadImages: false,
+  toggleTiming: 'ease', // a css transition func is possible (eg. cubic-bezier(0.755, 0.050, 0.855, 0.060))
+  coordsChangeTiming: 'ease'
 }
 
 export default Gridifier
