@@ -72,9 +72,18 @@ class Gridifier extends React.Component {
       coordsChangeTime: nextProps.coordsChangeTime || 300,
       toggleTiming: nextProps.toggleTiming,
       coordsChangeTiming: nextProps.coordsChangeTiming,
-
+      rotatePerspective: nextProps.rotatePerspective,
+      rotateBackface: nextProps.rotateBackface,
+      rotateAngles: nextProps.rotateAngles,
+      gridResize: nextProps.gridResize || 'fit',
+      gridResizeDelay: nextProps.gridResizeDelay || 100,
       dragifier: 'rg-drag-handler',
-      dragifierMode: 'i', // or 'd',
+      dragifierMode: nextProps.dragifierMode || 'i',
+      widthPxAs: 1,
+      heightPAs: 1,
+      vpResizeDelay: 10,
+      queueSize: nextProps.queueSize || 12,
+      queueDelay: nextProps.queueDelay ||25,
 
       // above does not belongs to gridifier, but used anyway by react component
       editable: nextProps.editable
@@ -140,7 +149,15 @@ Gridifier.propTypes = {
   toggleTime: PropTypes.number,
   coordsChangeTime: PropTypes.number,
   toggleTiming: PropTypes.string,
-  coordsChangeTiming: PropTypes.string
+  coordsChangeTiming: PropTypes.string,
+  rotatePerspective: PropTypes.string,
+  rotateBackface: PropTypes.bool.isRequired,
+  rotateAngles: PropTypes.array,
+  gridResize: PropTypes.oneOf(['fit', 'expand', 'disabled']),
+  gridResizeDelay: PropTypes.number,
+  dragifierMode: PropTypes.oneOf(['i', 'd']),
+  queueSize: PropTypes.number,
+  queueDelay: PropTypes.number
 }
 
 Gridifier.defaultProps = {
@@ -150,7 +167,10 @@ Gridifier.defaultProps = {
   sortDispersion: false,
   loadImages: false,
   toggleTiming: 'ease', // a css transition func is possible (eg. cubic-bezier(0.755, 0.050, 0.855, 0.060))
-  coordsChangeTiming: 'ease'
+  coordsChangeTiming: 'ease',
+  rotatePerspective: '200px',
+  rotateBackface: true,
+  rotateAngles: [0, -180, 180, 0],
 }
 
 export default Gridifier
