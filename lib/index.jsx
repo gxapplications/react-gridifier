@@ -80,7 +80,7 @@ class Gridifier extends React.Component {
       dragifier: 'rg-drag-handler',
       dragifierMode: nextProps.dragifierMode || 'i',
       widthPxAs: 1,
-      heightPAs: 1,
+      heightPxAs: 1,
       vpResizeDelay: 10,
       queueSize: nextProps.queueSize || 12,
       queueDelay: nextProps.queueDelay ||25,
@@ -176,4 +176,4 @@ Gridifier.defaultProps = {
 export default Gridifier
 
 export { Gridifier }
-export { default as GridifierItem } from './item.jsx'
+export { default as Item } from './item.jsx'

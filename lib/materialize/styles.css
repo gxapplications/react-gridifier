@@ -1,0 +1,47 @@
+
+/* We need to fix wrong gaps between items */
+.rg-grid {
+  width: calc(100% + 4px);
+  background-color: white;
+  overflow-y: hidden;
+  left: -1px;
+}
+@media only screen and (min-width: 601px) {
+  .rg-grid {
+    width: calc(100% + 6px);
+    left: -2px;
+  }
+}
+@media only screen and (min-width: 993px) {
+  .rg-grid {
+    width: calc(100% + 8px);
+    left: -4px;
+  }
+}
+
+/* item in the grid */
+.rg-grid > .rg-grid-item {
+  padding: 0.6rem !important;
+}
+
+/* item during drag */
+body > .rg-grid-item {
+    padding: 0 !important;
+}
+
+.rg-item-wrapper {
+  height: calc(100% - 1px);
+  margin: 0 !important;
+}
+
+.rg-item-wrapper.w-fixer-1 {
+    width: calc(100% + 2px);
+}
+
+.rg-item-wrapper.w-fixer-2 {
+    width: calc(100% + 1px);
+}
+
+.rg-item-wrapper.h-fixer-1 {
+    height: calc(100% + 1px);
+}

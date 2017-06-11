@@ -12,13 +12,25 @@ class GridifierItem extends React.Component {
     this.state = { id: this.props.id || uuid.v4() }
   }
 
+  getClassNames () {
+    return classNames('rg-grid-item', this.props.className)
+  }
+
+  getWrapperClassNames () {
+    return 'rg-item-wrapper'
+  }
+
+  getStyles () {
+    return { visibility: 'hidden' }
+  }
+
   render () {
     return (
       <div
-        className={classNames('rg-grid-item', this.props.className)}
-        key={this.state.id} id={this.state.id} style={{ visibility: 'hidden' }}
+        className={this.getClassNames()}
+        key={this.state.id} id={this.state.id} style={this.getStyles()}
       >
-        <div className='rg-item-wrapper'>
+        <div className={this.getWrapperClassNames()}>
           {this.props.children}
         </div>
         {(this.props.draggable) ? this.getDragHandler() : null}
