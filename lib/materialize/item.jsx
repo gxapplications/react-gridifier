@@ -2,14 +2,11 @@
 
 import classNames from 'classnames'
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import GridifierItem from '../item.jsx'
 
 class MaterializeGridifierItem extends GridifierItem {
-  constructor (props) {
-    super(props)
-  }
-
   getClassNames () {
     const w = this.props.width
     const h = this.props.height
@@ -46,6 +43,15 @@ class MaterializeGridifierItem extends GridifierItem {
   }
 }
 
-// FIXME: props and defaults values: width [1,2,3], height [1,2,3], backgroundColor
+MaterializeGridifierItem.propTypes = {
+  width: PropTypes.oneOf([1, 2, 3]),
+  height: PropTypes.oneOf([1, 2, 3]),
+  backgroundColor: PropTypes.string
+}
+
+MaterializeGridifierItem.defaultProps = {
+  width: 1,
+  height: 1
+}
 
 export default MaterializeGridifierItem

@@ -1,19 +1,18 @@
-
 /* We need to fix wrong gaps between items */
-.rg-grid {
+.rg-grid.rg-item-backgrounds {
   width: calc(100% + 4px);
   background-color: white;
   overflow-y: hidden;
   left: -1px;
 }
 @media only screen and (min-width: 601px) {
-  .rg-grid {
+  .rg-grid.rg-item-backgrounds {
     width: calc(100% + 6px);
     left: -2px;
   }
 }
 @media only screen and (min-width: 993px) {
-  .rg-grid {
+  .rg-grid.rg-item-backgrounds {
     width: calc(100% + 8px);
     left: -4px;
   }
@@ -26,22 +25,38 @@
 
 /* item during drag */
 body > .rg-grid-item {
-    padding: 0 !important;
+  padding: 0 !important;
 }
 
+/* Need to fix materialize CSS side effects on different card sizes */
 .rg-item-wrapper {
   height: calc(100% - 1px);
   margin: 0 !important;
 }
-
 .rg-item-wrapper.w-fixer-1 {
-    width: calc(100% + 2px);
+  width: calc(100% + 2px);
 }
-
 .rg-item-wrapper.w-fixer-2 {
-    width: calc(100% + 1px);
+  width: calc(100% + 1px);
+}
+.rg-item-wrapper.h-fixer-1, .rg-item-wrapper.h-fixer-2 {
+  height: calc(100% + 1px);
 }
 
-.rg-item-wrapper.h-fixer-1 {
-    height: calc(100% + 1px);
+/* Handlers */
+.rg-grid-item > .rg-drag-handler {
+    top: 0.7rem;
+    left: 0.75rem;
+    right: 70%;
+    bottom: 0.7rem;
+    opacity: 0.5;
+    background-color: red;
+}
+.rg-grid-item > .rg-remove-handler {
+    top: 0.7rem;
+    left: 70%;
+    right: 0.7rem;
+    bottom: 0.7rem;
+    opacity: 0.5;
+    background-color: yellow;
 }

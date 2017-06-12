@@ -1,19 +1,20 @@
-.grey.card {
-    margin: 0 !important;
+.card {
+  margin: 0 !important;
+  background-color: teal;
 }
 
 .rg-item-wrapper {
-    padding: 5px;
+  padding: 5px;
 }
 
 .h1 {
-    height: 6rem !important;
+  height: 6rem !important;
 }
 
 .h2 {
-    height: 12rem !important;
+  height: 12rem !important;
 }
 
 .h3 {
-    height: 18rem !important;
+  height: 18rem !important;
 }

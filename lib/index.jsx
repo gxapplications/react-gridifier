@@ -1,5 +1,6 @@
 'use strict'
 
+import classNames from 'classnames'
 import JqGridifier from 'gridifier'
 import $ from 'jquery'
 import _ from 'lodash'
@@ -52,8 +53,12 @@ class Gridifier extends React.Component {
   }
 
   render () {
+    const className = classNames(
+      this.props.itemBackgrounds ? 'rg-item-backgrounds rg-grid' : 'rg-grid',
+      this.props.className
+    )
     return (
-      <div ref='grid' className={this.props.className}>
+      <div ref='grid' className={className}>
         {this.props.children}
       </div>
     )
@@ -79,11 +84,11 @@ class Gridifier extends React.Component {
       gridResizeDelay: nextProps.gridResizeDelay || 100,
       dragifier: 'rg-drag-handler',
       dragifierMode: nextProps.dragifierMode || 'i',
-      widthPxAs: 1,
-      heightPxAs: 1,
+      widthPxAs: nextProps.itemBackgrounds ? 1 : 0,
+      heightPxAs: nextProps.itemBackgrounds ? 1 : 0,
       vpResizeDelay: 10,
       queueSize: nextProps.queueSize || 12,
-      queueDelay: nextProps.queueDelay ||25,
+      queueDelay: nextProps.queueDelay || 25,
 
       // above does not belongs to gridifier, but used anyway by react component
       editable: nextProps.editable
@@ -138,6 +143,7 @@ class Gridifier extends React.Component {
 Gridifier.propTypes = {
   editable: PropTypes.bool.isRequired,
   insertionMode: PropTypes.oneOf(['append', 'prepend']).isRequired,
+  itemBackgrounds: PropTypes.bool.isRequired,
 
   grid: PropTypes.oneOf(['vertical', 'horizontal']),
   prepend: PropTypes.oneOf(['mirrored', 'default', 'reversed']),
@@ -163,6 +169,7 @@ Gridifier.propTypes = {
 Gridifier.defaultProps = {
   editable: false,
   insertionMode: 'append',
+  itemBackgrounds: false,
   intersections: true,
   sortDispersion: false,
   loadImages: false,
@@ -170,7 +177,7 @@ Gridifier.defaultProps = {
   coordsChangeTiming: 'ease',
   rotatePerspective: '200px',
   rotateBackface: true,
-  rotateAngles: [0, -180, 180, 0],
+  rotateAngles: [0, -180, 180, 0]
 }
 
 export default Gridifier

@@ -3,18 +3,18 @@
 import classNames from 'classnames'
 import React from 'react'
 
-import { Gridifier }  from '../index'
+import { Gridifier } from '../index'
 
 import './styles.css'
 
 class MaterializeGridifier extends Gridifier {
-  constructor (props) {
-    super(props)
-  }
-
   render () {
+    const className = classNames(
+      this.props.itemBackgrounds ? 'row rg-item-backgrounds rg-grid' : 'row rg-grid',
+      this.props.className
+    )
     return (
-      <div ref='grid' className={classNames('row rg-grid', this.props.className)}>
+      <div ref='grid' className={className}>
         {this.props.children}
       </div>
     )

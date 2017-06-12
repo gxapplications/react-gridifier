@@ -1,26 +1,26 @@
 .rg-grid-item {
-    position: relative;
+  position: relative;
 }
 
 .rg-drag-handler {
-    cursor: pointer;
-    cursor: -webkit-grab;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 50%;
-    bottom: 0;
-    opacity: 0.5;
-    background-color: blue;
+  cursor: pointer;
+  cursor: -webkit-grab;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 50%;
+  bottom: 0;
+  opacity: 0.5;
+  background-color: blue;
 }
 
 .rg-remove-handler {
-    cursor: no-drop;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    right: 0;
-    bottom: 0;
-    opacity: 0.5;
-    background-color: red;
+  cursor: no-drop;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  right: 0;
+  bottom: 0;
+  opacity: 0.5;
+  background-color: red;
 }
