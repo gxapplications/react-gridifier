@@ -32,14 +32,30 @@ class MaterializeGridifierItem extends GridifierItem {
 
   getDragHandler () {
     return (
-      <div className='rg-drag-handler rg-edition-tool' />
+      <div className='rg-drag-handler rg-edition-tool'>
+        <i className='material-icons'>drag_handle</i>
+      </div>
     )
   }
 
   getRemoveHandler () {
     return (
-      <div className='rg-remove-handler rg-edition-tool' onClick={() => this.props.removeHandler(this)} />
+      <div className='rg-remove-handler rg-edition-tool'>
+        <div onClick={() => this.props.removeHandler(this)} className='btn waves-effect waves-light red'>
+          <i className='material-icons'>delete</i>
+        </div>
+      </div>
     )
+  }
+
+  getMoreHandlers () {
+    return this.props.settingsHandler ? (
+      <div className='rg-settings-handler rg-edition-tool'>
+        <div onClick={() => this.props.settingsHandler(this)} className='btn waves-effect waves-light blue'>
+          <i className='material-icons'>settings</i>
+        </div>
+      </div>
+    ) : null
   }
 }
 

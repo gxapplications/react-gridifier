@@ -21,6 +21,11 @@
 /* item in the grid */
 .rg-grid > .rg-grid-item {
   padding: 0.6rem !important;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: -moz-none;
+    -o-user-select: none;
+    user-select: none;
 }
 
 /* item during drag */
@@ -45,18 +50,48 @@ body > .rg-grid-item {
 
 /* Handlers */
 .rg-grid-item > .rg-drag-handler {
-    top: 0.7rem;
-    left: 0.75rem;
-    right: 70%;
-    bottom: 0.7rem;
-    opacity: 0.5;
-    background-color: red;
+    top: 0.9rem;
+    left: 0.9rem;
+    right: 69%;
+    bottom: 0.9rem;
+    opacity: 0.9;
+    background-color: grey;
+    color: white;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .rg-grid-item > .rg-remove-handler {
-    top: 0.7rem;
-    left: 70%;
-    right: 0.7rem;
-    bottom: 0.7rem;
-    opacity: 0.5;
-    background-color: yellow;
+    cursor: inherit;
+    top: 0.9rem;
+    left: 69%;
+    right: 0.8rem;
+    bottom: 0.9rem;
+    opacity: 0.9;
+    background-color: transparent;
+}
+.rg-grid-item > .rg-settings-handler {
+    position: absolute;
+    top: 0.9rem;
+    left: calc(31% + 6px);
+    right: calc(31% + 6px);
+    bottom: 0.9rem;
+    opacity: 0.9;
+    background-color: transparent;
+}
+.rg-grid-item > .rg-remove-handler > .btn,
+.rg-grid-item > .rg-settings-handler > .btn {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.rg-grid-item > .rg-remove-handler > .btn > i,
+.rg-grid-item > .rg-settings-handler > .btn > i,
+.rg-grid-item > .rg-drag-handler > i{
+    font-size: 1.8em;
 }

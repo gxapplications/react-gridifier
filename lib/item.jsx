@@ -34,6 +34,7 @@ class GridifierItem extends React.Component {
           {this.props.children}
         </div>
         {(this.props.draggable) ? this.getDragHandler() : null}
+        {this.getMoreHandlers()}
         {(this.props.removable) ? this.getRemoveHandler() : null}
       </div>
     )
@@ -49,6 +50,10 @@ class GridifierItem extends React.Component {
     return (
       <div className='rg-remove-handler rg-edition-tool' onClick={() => this.props.removeHandler(this)} />
     )
+  }
+
+  getMoreHandlers () {
+    return null
   }
 }
 
