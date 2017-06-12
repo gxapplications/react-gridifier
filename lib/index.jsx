@@ -2,8 +2,6 @@
 
 import classNames from 'classnames'
 import JqGridifier from 'gridifier'
-import $ from 'jquery'
-import _ from 'lodash'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
@@ -98,10 +96,11 @@ class Gridifier extends React.Component {
   }
 
   updateGridSettings (nextGridSettings, nextState) {
-    const changes = _.omitBy(nextGridSettings, function (v, k) {
-      return nextState.gridSettings[k] ? nextState.gridSettings[k] === v : false
-    })
-    _.forOwn(changes, (v, k) => {
+    Object.entries(nextGridSettings).forEach(([k, v]) => {
+      if (nextState.gridSettings && nextState.gridSettings[k] === v) {
+          return
+      }
+
       switch (k) {
         case 'editable':
           v ? this._grid.dragifierOn() : this._grid.dragifierOff()
@@ -132,11 +131,9 @@ class Gridifier extends React.Component {
   }
 
   updateEditHandlersVisibility () {
-    if (this.props.editable) {
-      $('.rg-edition-tool', this._gridDOMNode).show()
-    } else {
-      $('.rg-edition-tool', this._gridDOMNode).hide()
-    }
+    [].forEach.call(document.getElementsByClassName('rg-edition-tool'), (element) => {
+      element.style.display = this.props.editable ? 'block' : 'none'
+    })
   }
 }
 

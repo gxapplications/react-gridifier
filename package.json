@@ -7,7 +7,7 @@
   "contributors": [],
   "license": "Use is restricted during development. Open source after.",
   "scripts": {
-    "start": "webpack-dev-server --config webpack.config.js --no-info --progress --inline",
+    "start": "webpack-dev-server --config example/webpack.config.js --no-info --progress --inline",
     "dist": "babel lib --presets babel-preset-es2015-node6 --presets babel-preset-stage-2 --out-dir dist",
     "prepublish": "npm run dist",
     "doc:jsdoc": "jsdoc --package package.json --readme README.md --destination doc/jsdoc/ server/** lib/**",
@@ -64,8 +64,6 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "gridifier": "^2.0.3",
-    "lodash": "^4.17.4",
-    "materialize-css": "^0.98.2",
     "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
@@ -88,6 +86,8 @@
     "groc": "^0.8.0",
     "jquery": "^3.2.1",
     "jsdoc": "^3.4.0",
+    "lodash": "^4.17.4",
+    "materialize-css": "^0.98.2",
     "mocha": "^3.4.2",
     "nyc": "^6.1.1",
     "precommit-hook": "^3.0.0",

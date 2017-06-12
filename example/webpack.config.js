@@ -5,7 +5,7 @@ const Path = require('path')
 module.exports = {
   entry: './example/bootstrap.jsx',
   output: {
-    path: Path.join(__dirname, 'example/build'),
+    path: Path.join(__dirname, 'build'),
     filename: 'bundle.js',
     publicPath: '/example/build'
   },
@@ -14,7 +14,7 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        include: __dirname,
+        include: Path.join(__dirname, '..'),
         use: [{
           loader: 'babel-loader',
           options: {
@@ -25,7 +25,7 @@ module.exports = {
       {
         test: /\.css$/,
         exclude: /node_modules/,
-        include: __dirname,
+        include: Path.join(__dirname, '..'),
         use: [
           {
             loader: 'style-loader'

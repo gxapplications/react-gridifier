@@ -62,7 +62,8 @@ class MaterializeGridifierItem extends GridifierItem {
 MaterializeGridifierItem.propTypes = {
   width: PropTypes.oneOf([1, 2, 3]),
   height: PropTypes.oneOf([1, 2, 3]),
-  backgroundColor: PropTypes.string
+  backgroundColor: PropTypes.string,
+  settingsHandler: PropTypes.func
 }
 
 MaterializeGridifierItem.defaultProps = {
