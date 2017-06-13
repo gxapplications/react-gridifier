@@ -19,7 +19,7 @@ const generateItem = (w = 1, h = 1, removeHandler = undefined) => {
       draggable
       removable={!!removeHandler}
       removeHandler={removeHandler}
-      settingsHandler={() => null}
+      settingsHandler={(item, event) => null}
     >
       {id}
     </Item>

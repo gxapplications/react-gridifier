@@ -96,9 +96,13 @@ class Gridifier extends React.Component {
   }
 
   updateGridSettings (nextGridSettings, nextState) {
-    Object.entries(nextGridSettings).forEach(([k, v]) => {
+    for (let k in nextGridSettings) {
+      if (!nextGridSettings.hasOwnProperty(k)) {
+        continue
+      }
+      const v = nextGridSettings[k]
       if (nextState.gridSettings && nextState.gridSettings[k] === v) {
-          return
+        continue
       }
 
       switch (k) {
@@ -108,7 +112,7 @@ class Gridifier extends React.Component {
         default:
           this._grid.set(k, v).reposition()
       }
-    })
+    }
   }
 
   connectAddedChildren () {
@@ -132,7 +136,7 @@ class Gridifier extends React.Component {
 
   updateEditHandlersVisibility () {
     [].forEach.call(document.getElementsByClassName('rg-edition-tool'), (element) => {
-      element.style.display = this.props.editable ? 'block' : 'none'
+      element.style.display = this.props.editable ? 'flex' : 'none'
     })
   }
 }

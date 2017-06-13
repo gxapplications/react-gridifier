@@ -89,9 +89,10 @@ body > .rg-grid-item {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: inherit;
 }
 .rg-grid-item > .rg-remove-handler > .btn > i,
 .rg-grid-item > .rg-settings-handler > .btn > i,
-.rg-grid-item > .rg-drag-handler > i{
+.rg-grid-item > .rg-drag-handler > i {
     font-size: 1.8em;
 }

@@ -7,6 +7,11 @@ import PropTypes from 'prop-types'
 import GridifierItem from '../item.jsx'
 
 class MaterializeGridifierItem extends GridifierItem {
+  constructor (props) {
+    super(props)
+    this.state.removeConfirm = false
+  }
+
   getClassNames () {
     const w = this.props.width
     const h = this.props.height
@@ -41,17 +46,31 @@ class MaterializeGridifierItem extends GridifierItem {
   getRemoveHandler () {
     return (
       <div className='rg-remove-handler rg-edition-tool'>
-        <div onClick={() => this.props.removeHandler(this)} className='btn waves-effect waves-light red'>
-          <i className='material-icons'>delete</i>
-        </div>
+        {
+          (this.state.removeConfirm)
+          ? <div ref='removeConfirm' onClick={() => this.props.removeHandler(this)}
+            className='btn waves-effect waves-light red'>
+            <i className='material-icons'>delete_forever</i>
+          </div>
+          : <div ref='remove' onClick={() => this.removeConfirmation()} className='btn waves-effect waves-light orange'>
+            <i className='material-icons'>delete</i>
+          </div>
+        }
       </div>
     )
+  }
+
+  removeConfirmation () {
+    this.setState({ removeConfirm: true })
+    setTimeout(() => {
+      this.setState({ removeConfirm: false })
+    }, 3000)
   }
 
   getMoreHandlers () {
     return this.props.settingsHandler ? (
       <div className='rg-settings-handler rg-edition-tool'>
-        <div onClick={() => this.props.settingsHandler(this)} className='btn waves-effect waves-light blue'>
+        <div onClick={(event) => this.props.settingsHandler(this, event)} className='btn waves-effect waves-light blue'>
           <i className='material-icons'>settings</i>
         </div>
       </div>

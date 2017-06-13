@@ -24,3 +24,9 @@
   opacity: 0.5;
   background-color: red;
 }
+
+/* During drag process, do not display handlers */
+body > .rg-grid-item > .rg-remove-handler,
+body > .rg-grid-item > .rg-settings-handler{
+    display: none !important;
+}
