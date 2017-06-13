@@ -158,6 +158,8 @@ class Gridifier extends React.Component {
         // TODO: action to this._grid to force a sort with the given list
         console.log('I receive ', list)
       })
+
+      addHandler.restoreOrder()   // init
     }
   }
 }
