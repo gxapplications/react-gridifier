@@ -21,6 +21,8 @@ class Gridifier extends React.Component {
     this._gridDOMNode = ReactDOM.findDOMNode(this.refs.grid)
     this._grid = new JqGridifier(this._gridDOMNode, this.state.gridSettings)
 
+    this.updateOrderHandler(this.props.orderHandler, null)
+
     this.updateEditHandlersVisibility()
     this.connectAddedChildren()
 
@@ -89,7 +91,8 @@ class Gridifier extends React.Component {
       queueDelay: nextProps.queueDelay || 25,
 
       // above does not belongs to gridifier, but used anyway by react component
-      editable: nextProps.editable
+      editable: nextProps.editable,
+      orderHandler: nextProps.orderHandler
     }
     if (nextProps.align) settings.align = nextProps.align // null|undefined not working. Key must be omitted in the case
     return settings
@@ -108,6 +111,9 @@ class Gridifier extends React.Component {
       switch (k) {
         case 'editable':
           v ? this._grid.dragifierOn() : this._grid.dragifierOff()
+          break
+        case 'orderHandler':
+          this.updateOrderHandler(v, nextState.gridSettings[k])
           break
         default:
           this._grid.set(k, v).reposition()
@@ -139,10 +145,26 @@ class Gridifier extends React.Component {
       element.style.display = this.props.editable ? 'flex' : 'none'
     })
   }
+
+  updateOrderHandler (addHandler, removeHandler) {
+    if (removeHandler) {
+      removeHandler.removeAllListeners('sort-order-list')
+      // TODO: unplug handler listening on grid events
+    }
+    if (addHandler && addHandler.onChange) {
+      this._grid.onDragEnd(addHandler.onChange.bind(addHandler))
+      // TODO: other events to listen ?
+      addHandler.on('sort-order-list', (list) => {
+        // TODO: action to this._grid to force a sort with the given list
+        console.log('I receive ', list)
+      })
+    }
+  }
 }
 
 Gridifier.propTypes = {
   editable: PropTypes.bool.isRequired,
+  orderHandler: PropTypes.object,
   insertionMode: PropTypes.oneOf(['append', 'prepend']).isRequired,
   itemBackgrounds: PropTypes.bool.isRequired,
 
@@ -185,3 +207,4 @@ export default Gridifier
 
 export { Gridifier }
 export { default as Item } from './item.jsx'
+export { default as OrderHandler } from './order-handler.js'

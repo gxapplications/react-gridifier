@@ -4,7 +4,7 @@ import React from 'react'
 import { render } from 'react-dom'
 import uuid from 'uuid'
 
-import { Gridifier, Item } from '../lib/materialize'
+import { Gridifier, Item, OrderHandler } from '../lib/materialize'
 
 import './example.css'
 
@@ -37,6 +37,10 @@ class App extends React.Component {
       ],
       editable: false
     }
+
+    // Base orderHandler that save order into localstorage engine at each move.
+    // Can be extended to modify order persistence behavior or to make a manual persistence trigger.
+    this.orderHandler = new OrderHandler()
   }
 
   render () {
@@ -45,8 +49,9 @@ class App extends React.Component {
         <h3>Example</h3>
         <button onClick={this.addItem.bind(this)}>Add DOM item</button>
         <button onClick={this.toggleEditionMode.bind(this)}>Toggle edition mode</button>
+        <button onClick={this.orderHandler.restoreOrder.bind(this.orderHandler)}>Restore last saved order</button>
         <hr />
-        <Gridifier editable={this.state.editable} sortDispersion>
+        <Gridifier editable={this.state.editable} sortDispersion orderHandler={this.orderHandler}>
           {this.state.items}
         </Gridifier>
       </div>
