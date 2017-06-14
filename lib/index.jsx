@@ -149,17 +149,16 @@ class Gridifier extends React.Component {
   updateOrderHandler (addHandler, removeHandler) {
     if (removeHandler) {
       removeHandler.removeAllListeners('sort-order-list')
-      // TODO: unplug handler listening on grid events
+      // TODO: unplug handler listening on grid events: problem, there is no func to do this?
     }
     if (addHandler && addHandler.onChange) {
-      this._grid.onDragEnd(addHandler.onChange.bind(addHandler))
-      // TODO: other events to listen ?
       addHandler.on('sort-order-list', (list) => {
-        // TODO: action to this._grid to force a sort with the given list
+        // TODO: action into this._grid to force a sort with the given list
         console.log('I receive ', list)
       })
+      addHandler.restoreOrder() // init is run before plugin grid events
 
-      addHandler.restoreOrder()   // init
+      this._grid.onGridResize(addHandler.onChange.bind(addHandler))
     }
   }
 }
