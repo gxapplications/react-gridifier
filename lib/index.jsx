@@ -160,6 +160,7 @@ class Gridifier extends React.Component {
     if (addHandler && addHandler.onChange) {
       const that = this
       addHandler.on('sort-order-list', (list) => {
+        list =  [].slice.call(list)
         if (list.length > 0) {
           that._fromIdList = list.map((item) => item.id)
           that._grid.sort('fromIdList').resort()

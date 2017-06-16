@@ -2,15 +2,15 @@
 
 import React from 'react'
 import { render } from 'react-dom'
-import uuid from 'uuid'
 
 import { Gridifier, Item } from '../lib/materialize'
-import { LocalStorage as OrderHandler } from '../lib/order-handler'
+import { AutoStorage as OrderHandler } from '../lib/order-handler'
 
 import './example.css'
 
+let lastId = 123000;
 const generateItem = (w = 1, h = 1, removeHandler = undefined) => {
-  const id = uuid.v4()
+  const id = `ID-${lastId++}`
   return (
     <Item
       width={w}
@@ -41,7 +41,7 @@ class App extends React.Component {
 
     // Example of orderHandler that save order into localstorage engine at each move.
     // Can be extended to modify order persistence behavior or to make a manual persistence trigger.
-    this.orderHandler = new OrderHandler()
+    this.orderHandler = new OrderHandler(window.localStorage, 'rg-example')
   }
 
   render () {
