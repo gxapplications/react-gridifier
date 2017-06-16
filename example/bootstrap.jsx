@@ -4,7 +4,8 @@ import React from 'react'
 import { render } from 'react-dom'
 import uuid from 'uuid'
 
-import { Gridifier, Item, OrderHandler } from '../lib/materialize'
+import { Gridifier, Item } from '../lib/materialize'
+import { LocalStorage as OrderHandler } from '../lib/order-handler'
 
 import './example.css'
 
@@ -38,7 +39,7 @@ class App extends React.Component {
       editable: false
     }
 
-    // Base orderHandler that save order into localstorage engine at each move.
+    // Example of orderHandler that save order into localstorage engine at each move.
     // Can be extended to modify order persistence behavior or to make a manual persistence trigger.
     this.orderHandler = new OrderHandler()
   }

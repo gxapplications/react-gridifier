@@ -25,4 +25,4 @@ export default MaterializeGridifier
 
 export { MaterializeGridifier as Gridifier }
 export { default as Item } from './item.jsx'
-export { default as OrderHandler } from '../order-handler.js'
+export { default as OrderHandler } from '../order-handler'
