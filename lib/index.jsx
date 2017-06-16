@@ -65,6 +65,7 @@ class Gridifier extends React.Component {
   }
 
   gridSettingsFromProps (nextProps) {
+    const that = this
     const settings = {
       class: 'rg-grid-item',
       grid: nextProps.grid || 'vertical',
@@ -92,7 +93,12 @@ class Gridifier extends React.Component {
 
       // above does not belongs to gridifier, but used anyway by react component
       editable: nextProps.editable,
-      orderHandler: nextProps.orderHandler
+      orderHandler: nextProps.orderHandler,
+      sort: {
+        fromIdList: (first, second) => {
+          return that._fromIdList.indexOf(first.id) - that._fromIdList.indexOf(second.id)
+        }
+      }
     }
     if (nextProps.align) settings.align = nextProps.align // null|undefined not working. Key must be omitted in the case
     return settings
@@ -149,12 +155,15 @@ class Gridifier extends React.Component {
   updateOrderHandler (addHandler, removeHandler) {
     if (removeHandler) {
       removeHandler.removeAllListeners('sort-order-list')
-      // TODO: unplug handler listening on grid events: problem, there is no func to do this?
+      // FIXME: unplug handler listening on grid events: problem, there is no func to do this?
     }
     if (addHandler && addHandler.onChange) {
+      const that = this
       addHandler.on('sort-order-list', (list) => {
-        // TODO: action into this._grid to force a sort with the given list
-        console.log('I receive ', list)
+        if (list.length > 0) {
+          that._fromIdList = list.map((item) => item.id)
+          that._grid.sort('fromIdList').resort()
+        }
       })
       addHandler.restoreOrder() // init is run before plugin grid events
 
