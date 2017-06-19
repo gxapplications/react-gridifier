@@ -4,11 +4,11 @@ import React from 'react'
 import { render } from 'react-dom'
 
 import { Gridifier, Item } from '../lib/materialize'
-import { AutoStorage as OrderHandler } from '../lib/order-handler'
+import { ExplicitSaving as OrderHandler } from '../lib/order-handler'
 
 import './example.css'
 
-let lastId = 123000;
+let lastId = 123000
 const generateItem = (w = 1, h = 1, removeHandler = undefined) => {
   const id = `ID-${lastId++}`
   return (
@@ -50,6 +50,8 @@ class App extends React.Component {
         <h3>Example</h3>
         <button onClick={this.addItem.bind(this)}>Add DOM item</button>
         <button onClick={this.toggleEditionMode.bind(this)}>Toggle edition mode</button>
+
+        <button onClick={this.orderHandler.persistOrder.bind(this.orderHandler)}>Persist order</button>
         <button onClick={this.orderHandler.restoreOrder.bind(this.orderHandler)}>Restore last saved order</button>
         <hr />
         <Gridifier editable={this.state.editable} sortDispersion orderHandler={this.orderHandler}>

@@ -9,7 +9,7 @@ import uuid from 'uuid'
 class GridifierItem extends React.Component {
   constructor (props) {
     super(props)
-    this.state = { id: this.props.id || uuid.v4() }
+    this.state = { id: this.props.id || uuid.v4() } // TODO: remove uuid dependency!
   }
 
   getClassNames () {

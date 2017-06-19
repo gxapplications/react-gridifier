@@ -155,12 +155,12 @@ class Gridifier extends React.Component {
   updateOrderHandler (addHandler, removeHandler) {
     if (removeHandler) {
       removeHandler.removeAllListeners('sort-order-list')
-      // FIXME: unplug handler listening on grid events: problem, there is no func to do this?
+      // FIXME: unplug handler listening on grid events: problem, there is no func to do this in v.2.0.3!
     }
     if (addHandler && addHandler.onChange) {
       const that = this
       addHandler.on('sort-order-list', (list) => {
-        list =  [].slice.call(list)
+        list = [].slice.call(list)
         if (list.length > 0) {
           that._fromIdList = list.map((item) => item.id)
           that._grid.sort('fromIdList').resort()
