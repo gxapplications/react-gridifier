@@ -16,11 +16,33 @@ describe('[OrderHandlers] AutoStorage implementation', () => {
     expect(JSON.parse(storage.getItem('storage-key'))).to.deep.equal(order)
   })
 
-  it('will receive and persist changes automatically.')
+  it('will receive, sort, and persist changes automatically.', () => {
+    const storage = mockedStorage()
+    const orderHandler = new AutoStorage(storage, 'storage-key')
+    const gridNode = { children: [
+      { id: 1, attributes: { 'data-gridifier-guid': { value: 10001 } } },
+      { id: 3, attributes: { 'data-gridifier-guid': { value: 10003 } } },
+      { id: 2, attributes: { 'data-gridifier-guid': { value: 10002 } } }
+    ] }
+    const order = [{ id: 1, guid: 10001 }, { id: 2, guid: 10002 }, { id: 3, guid: 10003 }]
 
-  it('accepts a forced persist call.')
+    orderHandler.onChange(gridNode)
+    expect(JSON.parse(storage.getItem('storage-key'))).to.deep.equal(order)
+  })
 
-  it('can persist a node collection and restore a list.')
+  it('accepts a forced persist call.', () => {
+    const storage = mockedStorage()
+    const orderHandler = new AutoStorage(storage, 'storage-key')
+    const gridNode = { children: [
+      { id: 1, attributes: { 'data-gridifier-guid': { value: 10001 } } },
+      { id: 3, attributes: { 'data-gridifier-guid': { value: 10003 } } },
+      { id: 2, attributes: { 'data-gridifier-guid': { value: 10002 } } }
+    ] }
+    const order = [{ id: 1, guid: 10001 }, { id: 2, guid: 10002 }, { id: 3, guid: 10003 }]
+
+    orderHandler.onChange(gridNode)
+    expect(JSON.parse(storage.getItem('storage-key'))).to.deep.equal(order)
+    orderHandler.persistOrder(order)
+    expect(JSON.parse(storage.getItem('storage-key'))).to.deep.equal(order)
+  })
 })
-
-// TODO

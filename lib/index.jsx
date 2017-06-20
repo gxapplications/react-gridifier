@@ -217,5 +217,5 @@ Gridifier.defaultProps = {
 export default Gridifier
 
 export { Gridifier }
-export { default as Item } from './item.jsx'
+export { default as Item } from './item'
 export { default as OrderHandler } from './order-handler'

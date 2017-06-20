@@ -14,7 +14,7 @@
     "doc:coverage": "cross-env NODE_ENV=test nyc --require babel-core/register --reporter=lcov mocha && rimraf .nyc_output",
     "doc": "rimraf doc && npm run doc:jsdoc && groc && npm run doc:coverage",
     "lint": "standard --verbose | snazzy",
-    "test": "npm run dist && cross-env NODE_ENV=test mocha"
+    "test": "npm run dist && cross-env NODE_ENV=test mocha --require ignore-styles"
   },
   "main": "dist/index.jsx",
   "repository": {
@@ -83,13 +83,16 @@
     "colors": "^1.1.2",
     "cross-env": "^1.0.7",
     "css-loader": "^0.28.4",
+    "enzyme": "^2.8.2",
     "groc": "^0.8.0",
+    "ignore-styles": "^5.0.1",
     "jquery": "^3.2.1",
     "jsdoc": "^3.4.0",
     "materialize-css": "^0.98.2",
     "mocha": "^3.4.2",
     "nyc": "^6.1.1",
     "precommit-hook": "^3.0.0",
+    "react-addons-test-utils": "^15.6.0",
     "rimraf": "^2.5.2",
     "snazzy": "^7.0.0",
     "standard": "^6.0.1",
