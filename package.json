@@ -88,6 +88,7 @@
     "ignore-styles": "^5.0.1",
     "jquery": "^3.2.1",
     "jsdoc": "^3.4.0",
+    "jsdom": "^11.0.0",
     "materialize-css": "^0.98.2",
     "mocha": "^3.4.2",
     "nyc": "^6.1.1",

@@ -33,7 +33,7 @@ class Gridifier extends React.Component {
   }
 
   shouldComponentUpdate (nextProps) {
-    return true // to rework for perfs?
+    return true // FIXME: to rework for perfs?
   }
 
   componentWillUpdate (nextProps, nextState) {
@@ -50,6 +50,7 @@ class Gridifier extends React.Component {
 
   componentWillUnmount () {
     this._grid.destroy()
+    delete this._grid
   }
 
   render () {
