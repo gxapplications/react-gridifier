@@ -1,11 +1,11 @@
 {
   "private": true,
   "name": "react-gridifier",
-  "version": "0.0.1",
-  "description": "Private repository for now",
+  "version": "0.1.0",
+  "description": "A react wrapper for Jquery Gridifier library",
   "author": "Xavier Gouley <gxapplications@gmail.com>",
   "contributors": [],
-  "license": "Use is restricted during development. Open source after.",
+  "license": "MIT. This wrapper is open source. But please take care of the Gridifier license: http://gridifier.io/license",
   "scripts": {
     "start": "webpack-dev-server --config example/webpack.config.js --no-info --progress --inline",
     "dist": "babel lib --presets babel-preset-es2015-node6 --presets babel-preset-stage-2 --out-dir dist",
