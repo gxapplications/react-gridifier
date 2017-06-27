@@ -4,7 +4,7 @@ import classNames from 'classnames'
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import GridifierItem from '../item.jsx'
+import GridifierItem from '../item'
 
 class MaterializeGridifierItem extends GridifierItem {
   constructor (props) {

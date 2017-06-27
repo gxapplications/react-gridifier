@@ -24,5 +24,5 @@ class MaterializeGridifier extends Gridifier {
 export default MaterializeGridifier
 
 export { MaterializeGridifier as Gridifier }
-export { default as Item } from './item.jsx'
+export { default as Item } from './item'
 export { default as OrderHandler } from '../order-handler'
