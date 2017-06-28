@@ -137,6 +137,9 @@ class Gridifier extends React.Component {
   }
 
   disconnectRemovedChildren (nextChildren) {
+    if (!nextChildren) {
+      return
+    }
     const nextChildrenIds = nextChildren.map((child) => child.props.id)
     const children = this._grid.collectConnected()
     children.forEach((child) => {
