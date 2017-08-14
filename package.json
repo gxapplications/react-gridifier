@@ -4,7 +4,7 @@
   "description": "A react wrapper for Jquery Gridifier library",
   "author": "Xavier Gouley <gxapplications@gmail.com>",
   "contributors": [],
-  "license": "MIT. This wrapper is open source. But please take care of the Gridifier license: http://gridifier.io/license",
+  "license": "CC-BY-NC-SA-4.0",
   "scripts": {
     "start": "webpack-dev-server --config example/webpack.config.js --no-info --progress --inline",
     "dist": "babel lib --presets babel-preset-es2015-node6 --presets babel-preset-stage-2 --out-dir dist",
