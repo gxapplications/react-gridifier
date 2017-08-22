@@ -24,10 +24,14 @@ class GridifierItem extends React.Component {
     return { visibility: 'hidden' }
   }
 
+  getDimensions () {
+    return 'N/A'
+  }
+
   render () {
     return (
       <div
-        className={this.getClassNames()}
+        className={this.getClassNames()} dimensions={this.getDimensions()}
         key={this.state.id} id={this.state.id} style={this.getStyles()}
       >
         <div className={this.getWrapperClassNames()}>

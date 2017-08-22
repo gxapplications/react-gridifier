@@ -29,6 +29,10 @@ class MaterializeGridifierItem extends GridifierItem {
     return { 'visibility': 'hidden' }
   }
 
+  getDimensions () {
+    return `${this.props.width}:${this.props.height}`
+  }
+
   getWrapperClassNames () {
     const w = this.props.width
     const h = this.props.height
