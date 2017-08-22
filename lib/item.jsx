@@ -31,7 +31,7 @@ class GridifierItem extends React.Component {
   render () {
     return (
       <div
-        className={this.getClassNames()} dimensions={this.getDimensions()}
+        className={this.getClassNames()} data-dimensions={this.getDimensions()}
         key={this.state.id} id={this.state.id} style={this.getStyles()}
       >
         <div className={this.getWrapperClassNames()}>
