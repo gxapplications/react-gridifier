@@ -66,9 +66,16 @@ class MaterializeGridifierItem extends GridifierItem {
 
   removeConfirmation () {
     this.setState({ removeConfirm: true })
-    setTimeout(() => {
+    this._removeConfirmationCanceler = setTimeout(() => {
       this.setState({ removeConfirm: false })
     }, 3000)
+  }
+
+  componentWillUnmount () {
+    if (this._removeConfirmationCanceler) {
+      clearTimeout(this._removeConfirmationCanceler)
+    }
+    super.componentWillUnmount()
   }
 
   getMoreHandlers () {
