@@ -75,7 +75,6 @@ class MaterializeGridifierItem extends GridifierItem {
     if (this._removeConfirmationCanceler) {
       clearTimeout(this._removeConfirmationCanceler)
     }
-    super.componentWillUnmount()
   }
 
   getMoreHandlers () {
