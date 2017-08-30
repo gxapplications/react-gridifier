@@ -80,7 +80,7 @@ class MaterializeGridifierItem extends GridifierItem {
   getMoreHandlers () {
     return this.props.settingsHandler ? (
       <div className='rg-settings-handler rg-edition-tool'>
-        <div onClick={(event) => this.props.settingsHandler(this, event)} className='btn waves-effect waves-light blue'>
+        <div onClick={(event) => this.props.settingsHandler(this, event)} className='btn waves-effect waves-light'>
           <i className='material-icons'>settings</i>
         </div>
       </div>
