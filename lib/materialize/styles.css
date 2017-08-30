@@ -61,6 +61,7 @@ body > .rg-grid-item {
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 1;
 }
 .rg-grid-item > .rg-remove-handler {
     cursor: inherit;
@@ -70,6 +71,7 @@ body > .rg-grid-item {
     bottom: 0.9rem;
     opacity: 0.9;
     background-color: transparent;
+    z-index: 1;
 }
 .rg-grid-item > .rg-settings-handler {
     position: absolute;
@@ -79,6 +81,7 @@ body > .rg-grid-item {
     bottom: 0.9rem;
     opacity: 0.9;
     background-color: transparent;
+    z-index: 1;
 }
 .rg-grid-item > .rg-remove-handler > .btn,
 .rg-grid-item > .rg-settings-handler > .btn {
