@@ -66,7 +66,6 @@ class Gridifier extends React.Component {
   }
 
   gridSettingsFromProps (nextProps) {
-    const that = this
     const settings = {
       class: 'rg-grid-item',
       grid: nextProps.grid || 'vertical',
@@ -94,14 +93,10 @@ class Gridifier extends React.Component {
 
       // above does not belongs to gridifier, but used anyway by react component
       editable: nextProps.editable,
-      orderHandler: nextProps.orderHandler,
-      sort: {
-        fromIdList: (first, second) => {
-          return that._fromIdList.indexOf(first.id) - that._fromIdList.indexOf(second.id)
-        }
-      }
+      orderHandler: nextProps.orderHandler
     }
     if (nextProps.align) settings.align = nextProps.align // null|undefined not working. Key must be omitted in the case
+
     return settings
   }
 
@@ -167,6 +162,9 @@ class Gridifier extends React.Component {
         list = [].slice.call(list)
         if (list.length > 0) {
           that._fromIdList = list.map((item) => item.id)
+          that._grid.addApi('sort', 'fromIdList', ((first, second) => {
+            return this._fromIdList.indexOf(first.id) - this._fromIdList.indexOf(second.id)
+          }).bind(that))
           that._grid.sort('fromIdList').resort()
         }
       })

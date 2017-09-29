@@ -1,6 +1,6 @@
 {
   "name": "react-gridifier",
-  "version": "0.3.4",
+  "version": "0.3.9",
   "description": "A react wrapper for Jquery Gridifier library",
   "author": "Xavier Gouley <gxapplications@gmail.com>",
   "contributors": [],
