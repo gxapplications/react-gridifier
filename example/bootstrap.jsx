@@ -21,6 +21,7 @@ const generateItem = (w = 1, h = 1, removeHandler = undefined) => {
       removable={!!removeHandler}
       removeHandler={removeHandler}
       settingsHandler={(item, event) => null}
+      resizeHandler={(item, event) => null}
     >
       {id}
     </Item>

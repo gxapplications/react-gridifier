@@ -78,11 +78,19 @@ class MaterializeGridifierItem extends GridifierItem {
   }
 
   getMoreHandlers () {
-    return this.props.settingsHandler ? (
+    const resize = this.props.resizeHandler ? (
+      <div onClick={(event) => this.props.resizeHandler(this, event)} className='btn waves-effect waves-light'>
+        <i className='material-icons'>photo_size_select_small</i>
+      </div>
+    ) : null
+    const settings = this.props.settingsHandler ? (
+      <div onClick={(event) => this.props.settingsHandler(this, event)} className='btn waves-effect waves-light'>
+        <i className='material-icons'>settings</i>
+      </div>
+    ) : null
+    return (settings || resize) ? (
       <div className='rg-settings-handler rg-edition-tool'>
-        <div onClick={(event) => this.props.settingsHandler(this, event)} className='btn waves-effect waves-light'>
-          <i className='material-icons'>settings</i>
-        </div>
+        {resize} {settings}
       </div>
     ) : null
   }
@@ -92,7 +100,8 @@ MaterializeGridifierItem.propTypes = {
   width: PropTypes.oneOf([1, 2, 3]),
   height: PropTypes.oneOf([1, 2, 3]),
   backgroundColor: PropTypes.string,
-  settingsHandler: PropTypes.func
+  settingsHandler: PropTypes.func,
+  resizeHandler: PropTypes.func
 }
 
 MaterializeGridifierItem.defaultProps = {
