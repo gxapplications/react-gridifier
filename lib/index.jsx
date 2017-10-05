@@ -14,7 +14,6 @@ class Gridifier extends React.Component {
     this.state = {
       gridSettings: this.gridSettingsFromProps(this.props)
     }
-    console.log('react-gridifier: Component constructed.')
   }
 
   componentDidMount () {
@@ -25,8 +24,6 @@ class Gridifier extends React.Component {
 
     this.updateEditHandlersVisibility()
     this.connectAddedChildren()
-
-    console.log('react-gridifier: Component did mount.')
   }
 
   componentWillReceiveProps (nextProps) {
@@ -139,7 +136,6 @@ class Gridifier extends React.Component {
     const children = this._grid.collectConnected()
     children.forEach((child) => {
       if (!nextChildrenIds.includes(child.id)) {
-        console.log(`react-gridifier: Disconnecting item #${child.id} ...`)
         this._grid.disconnect(child)
       }
     })
@@ -164,7 +160,7 @@ class Gridifier extends React.Component {
           that._fromIdList = list.map((item) => item.id)
           that._grid.addApi('sort', 'fromIdList', ((first, second) => {
             return this._fromIdList.indexOf(first.id) - this._fromIdList.indexOf(second.id)
-          }).bind(that))
+          }).bind(that)) // eslint-disable-line no-extra-bind
           that._grid.sort('fromIdList').resort()
         }
       })
@@ -172,6 +168,10 @@ class Gridifier extends React.Component {
 
       this._grid.onGridResize(addHandler.onChange.bind(addHandler))
     }
+  }
+
+  reposition () {
+    this._grid.reposition()
   }
 }
 
