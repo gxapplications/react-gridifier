@@ -2,7 +2,6 @@ lib
 test
 example
 .idea
-.groc.json
 .jshintrc
 .jshintignore
 .travis.yml

@@ -52,7 +52,7 @@ body > .rg-grid-item {
 .rg-grid-item > .rg-drag-handler {
     top: 0.9rem;
     left: 0.9rem;
-    right: 69%;
+    right: 75%;
     bottom: 0.9rem;
     background-color: grey;
     color: white;
@@ -66,7 +66,7 @@ body > .rg-grid-item {
 .rg-grid-item > .rg-remove-handler {
     cursor: inherit;
     top: 0.9rem;
-    left: 69%;
+    left: 75%;
     right: 0.8rem;
     bottom: 0.9rem;
     background-color: transparent;
@@ -76,8 +76,8 @@ body > .rg-grid-item {
 .rg-grid-item > .rg-settings-handler {
     position: absolute;
     top: 0.9rem;
-    left: calc(31% + 6px);
-    right: calc(31% + 6px);
+    left: calc(25% + 6px);
+    right: calc(25% + 6px);
     bottom: 0.9rem;
     background-color: transparent;
     z-index: 1;
