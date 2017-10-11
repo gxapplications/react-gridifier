@@ -1,6 +1,6 @@
 {
   "name": "react-gridifier",
-  "version": "0.4.0",
+  "version": "0.4.2",
   "description": "A react wrapper for Jquery Gridifier library",
   "author": "Xavier Gouley <gxapplications@gmail.com>",
   "contributors": [],
@@ -69,6 +69,10 @@
     ]
   },
   "dependencies": {
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-es2015-node6": "^0.4.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.5.0",
     "classnames": "^2.2.5",
     "gridifier": "^2.0.3",
     "prop-types": "^15.5.10",
@@ -83,10 +87,6 @@
     "babel-eslint": "^6.0.0",
     "babel-loader": "^7.0.0",
     "babel-plugin-css-modules-transform": "^1.2.7",
-    "babel-preset-es2015": "^6.22.0",
-    "babel-preset-es2015-node6": "^0.4.0",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-2": "^6.5.0",
     "chai": "^4.0.1",
     "colors": "^1.1.2",
     "cross-env": "^1.0.7",
