@@ -5,15 +5,20 @@ import '../helpers/dom-setup'
 
 import React from 'react'
 import { expect } from 'chai'
-import { mount } from 'enzyme'
+import Enzyme, { mount } from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
 
 import Gridifier from '../../lib/index'
 import ExplicitSaving from '../../lib/order-handler/explicit-saving'
 
 describe('[Gridifier] React component', () => {
+  beforeEach(() => {
+    Enzyme.configure({ adapter: new Adapter() })
+  })
+
   it('can be mounted.', () => {
     const wrapper = mount(<Gridifier />)
-    expect(wrapper.hasClass('rg-grid')).to.equal(true)
+    expect(wrapper.find('div').hasClass('rg-grid')).to.equal(true)
   })
 
   it('can be unmounted.', () => {
@@ -25,7 +30,7 @@ describe('[Gridifier] React component', () => {
 
   it('accepts and transfers CSS classes.', () => {
     const wrapper = mount(<Gridifier className='test-abc' />)
-    expect(wrapper.hasClass('test-abc')).to.equal(true)
+    expect(wrapper.find('div').hasClass('test-abc')).to.equal(true)
   })
 
   it('accepts JqGridifier settings as properties.', () => {
@@ -55,7 +60,7 @@ describe('[Gridifier] React component', () => {
       queueDelay: 25
     }
     const wrapper = mount(<Gridifier {...options} />)
-    expect(wrapper.hasClass('rg-grid')).to.equal(true)
+    expect(wrapper.find('div').hasClass('rg-grid')).to.equal(true)
   })
 
   it('accepts structuring properties (editable, orderHandler, insertionMode, itemBackgrounds).', () => {
@@ -66,6 +71,6 @@ describe('[Gridifier] React component', () => {
       itemBackgrounds: true
     }
     const wrapper = mount(<Gridifier {...options} />)
-    expect(wrapper.hasClass('rg-grid')).to.equal(true)
+    expect(wrapper.find('div').hasClass('rg-grid')).to.equal(true)
   })
 })
