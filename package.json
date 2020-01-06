@@ -1,6 +1,6 @@
 {
   "name": "react-gridifier",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A react wrapper for Jquery Gridifier library",
   "author": "Xavier Gouley <gxapplications@gmail.com>",
   "contributors": [],
@@ -13,7 +13,8 @@
     "doc:coverage": "cross-env NODE_ENV=test nyc --require babel-core/register --reporter=lcov mocha && rimraf .nyc_output",
     "doc": "rimraf doc && npm run doc:jsdoc && npm run doc:coverage",
     "lint": "standard --verbose | snazzy",
-    "test": "npm run dist && cross-env NODE_ENV=test mocha --require ignore-styles"
+    "test": "npm run dist && cross-env NODE_ENV=test mocha --require ignore-styles",
+    "validate": "npm ls"
   },
   "main": "dist/index.js",
   "repository": {
@@ -29,8 +30,8 @@
     "react"
   ],
   "engines": {
-    "node": ">= 6.9.1",
-    "npm": ">= 3.10.8"
+    "node": ">= 8.11.1",
+    "npm": ">= 6.4.1"
   },
   "babel": {
     "presets": [
