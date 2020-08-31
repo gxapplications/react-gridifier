@@ -20,12 +20,13 @@
 
 /* item in the grid */
 .rg-grid > .rg-grid-item {
-  padding: 0.6rem !important;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: -moz-none;
-    -o-user-select: none;
-    user-select: none;
+  padding: 0 !important;
+  margin: 0 !important;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: -moz-none;
+  -o-user-select: none;
+  user-select: none;
 }
 
 /* item during drag */
@@ -35,17 +36,9 @@ body > .rg-grid-item {
 
 /* Need to fix materialize CSS side effects on different card sizes */
 .rg-item-wrapper {
-  height: calc(100% - 1px);
-  margin: 0 !important;
-}
-.rg-item-wrapper.w-fixer-1 {
-  width: calc(100% + 2px);
-}
-.rg-item-wrapper.w-fixer-2 {
-  width: calc(100% + 1px);
-}
-.rg-item-wrapper.h-fixer-1, .rg-item-wrapper.h-fixer-2 {
-  height: calc(100% + 1px);
+  height: calc(100% - 8px);
+  width: calc(100% - 8px);
+  margin: 4px !important;
 }
 
 /* Handlers */

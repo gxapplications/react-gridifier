@@ -4,12 +4,19 @@ import classNames from 'classnames'
 import React from 'react'
 import requiredIf from 'react-required-if'
 import PropTypes from 'prop-types'
-import uuid from 'uuid'
+
+const uuidv4 = () => {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+    const r = Math.random() * 16 | 0
+    const v = c === 'x' ? r : (r & 0x3 | 0x8)
+    return v.toString(16)
+  })
+}
 
 class GridifierItem extends React.Component {
   constructor (props) {
     super(props)
-    this.state = { id: this.props.id || uuid.v4() } // TODO: remove uuid dependency!
+    this.state = { id: this.props.id || uuidv4() }
   }
 
   getClassNames () {

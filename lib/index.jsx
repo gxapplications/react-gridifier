@@ -26,11 +26,22 @@ class Gridifier extends React.Component {
     this.connectAddedChildren()
   }
 
-  componentWillReceiveProps (nextProps) {
-  }
-
   shouldComponentUpdate (nextProps) {
-    return true // FIXME: to rework for perfs?
+    if ((nextProps.editable !== this.props.editable) ||
+      (nextProps.children.length !== this.props.children.length)) {
+      return true
+    }
+
+    // test if elements moved or resized
+    const a = nextProps.children.map((i) => i.props).map(({ id, width, height }) => `${width}-${height}-${id}`)
+    const b = this.props.children.map((i) => i.props).map(({ id, width, height }) => `${width}-${height}-${id}`)
+    for (let i = 0; i < a.length; i++) {
+      if (a[i] !== b[i]) {
+        return true
+      }
+    }
+
+    return false
   }
 
   componentWillUpdate (nextProps, nextState) {
@@ -71,19 +82,21 @@ class Gridifier extends React.Component {
       intersections: nextProps.intersections,
       sortDispersion: nextProps.sortDispersion,
       loadImages: nextProps.loadImages,
-      toggleTime: nextProps.toggleTime || 500,
-      coordsChangeTime: nextProps.coordsChangeTime || 300,
+      toggleTime: nextProps.toggleTime || 0,
+      coordsChangeTime: nextProps.coordsChangeTime || 0,
       toggleTiming: nextProps.toggleTiming,
       coordsChangeTiming: nextProps.coordsChangeTiming,
       rotatePerspective: nextProps.rotatePerspective,
       rotateBackface: nextProps.rotateBackface,
       rotateAngles: nextProps.rotateAngles,
       gridResize: nextProps.gridResize || 'fit',
-      gridResizeDelay: nextProps.gridResizeDelay || 100,
+      gridResizeDelay: nextProps.gridResizeDelay || 0,
       dragifier: 'rg-drag-handler',
       dragifierMode: nextProps.dragifierMode || 'i',
-      widthPxAs: nextProps.itemBackgrounds ? 1 : 0,
-      heightPxAs: nextProps.itemBackgrounds ? 1 : 0,
+      widthPtAs: 0,
+      heightPtAs: 0,
+      widthPxAs: 0,
+      heightPxAs: 0,
       vpResizeDelay: 10,
       queueSize: nextProps.queueSize || 12,
       queueDelay: nextProps.queueDelay || 25,
@@ -172,6 +185,7 @@ class Gridifier extends React.Component {
 
   reposition () {
     this._grid.reposition()
+    this.forceUpdate()
   }
 }
 
@@ -180,7 +194,6 @@ Gridifier.propTypes = {
   orderHandler: PropTypes.object,
   insertionMode: PropTypes.oneOf(['append', 'prepend']).isRequired,
   itemBackgrounds: PropTypes.bool.isRequired,
-
   grid: PropTypes.oneOf(['vertical', 'horizontal']),
   prepend: PropTypes.oneOf(['mirrored', 'default', 'reversed']),
   append: PropTypes.oneOf(['default', 'reversed']),
@@ -209,7 +222,7 @@ Gridifier.defaultProps = {
   intersections: true,
   sortDispersion: false,
   loadImages: false,
-  toggleTiming: 'ease', // a css transition func is possible (eg. cubic-bezier(0.755, 0.050, 0.855, 0.060))
+  toggleTiming: 'ease',
   coordsChangeTiming: 'ease',
   rotatePerspective: '200px',
   rotateBackface: true,

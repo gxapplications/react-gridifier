@@ -7,6 +7,7 @@ import { Gridifier, Item } from '../lib/materialize'
 import { ExplicitSaving as OrderHandler } from '../lib/order-handler'
 
 import './example.css'
+import '../lib/materialize/styles.css'
 
 let lastId = 123000
 const generateItem = (w = 1, h = 1, removeHandler = undefined) => {
