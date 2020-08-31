@@ -111,7 +111,8 @@ class Gridifier extends React.Component {
   }
 
   updateGridSettings (nextGridSettings, nextState) {
-    for (let k in nextGridSettings) {
+    for (const k in nextGridSettings) {
+      // eslint-disable-next-line no-prototype-builtins
       if (!nextGridSettings.hasOwnProperty(k)) {
         continue
       }

@@ -1,4 +1,3 @@
-/* eslint-env mocha */
 'use strict'
 
 import '../helpers/dom-setup'

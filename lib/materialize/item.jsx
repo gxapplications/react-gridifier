@@ -21,12 +21,12 @@ class MaterializeGridifierItem extends GridifierItem {
   getStyles () {
     if (this.props.backgroundColor) {
       return {
-        'visibility': 'hidden',
-        'backgroundColor': this.props.backgroundColor,
-        'boxShadow': `1px 1px 0 ${this.props.backgroundColor}`
+        visibility: 'hidden',
+        backgroundColor: this.props.backgroundColor,
+        boxShadow: `1px 1px 0 ${this.props.backgroundColor}`
       }
     }
-    return { 'visibility': 'hidden' }
+    return { visibility: 'hidden' }
   }
 
   getDimensions () {
@@ -51,14 +51,19 @@ class MaterializeGridifierItem extends GridifierItem {
     return (
       <div className='rg-remove-handler rg-edition-tool'>
         {
-          (this.state.removeConfirm)
-          ? <div ref='removeConfirm' onClick={() => this.props.removeHandler(this)}
-            className='btn waves-effect waves-light red'>
-            <i className='material-icons'>delete_forever</i>
-          </div>
-          : <div ref='remove' onClick={() => this.removeConfirmation()} className='btn waves-effect waves-light orange'>
-            <i className='material-icons'>delete</i>
-          </div>
+          (this.state.removeConfirm &&
+            <div
+              ref='removeConfirm'
+              onClick={() => this.props.removeHandler(this)}
+              className='btn waves-effect waves-light red'
+            >
+              <i className='material-icons'>delete_forever</i>
+            </div>
+          ) || (
+            <div ref='remove' onClick={() => this.removeConfirmation()} className='btn waves-effect waves-light orange'>
+              <i className='material-icons'>delete</i>
+            </div>
+          )
         }
       </div>
     )

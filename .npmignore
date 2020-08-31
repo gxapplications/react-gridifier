@@ -2,6 +2,3 @@ lib
 test
 example
 .idea
-.jshintrc
-.jshintignore
-.travis.yml

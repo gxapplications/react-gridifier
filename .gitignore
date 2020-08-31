@@ -1,9 +1,7 @@
 npm-debug.log
-.jshint*
 
 /node_modules
 /dist
-/doc
 
 .idea
 .DS_Store
