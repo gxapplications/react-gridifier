@@ -56,7 +56,7 @@ class App extends React.Component {
         <button onClick={this.orderHandler.persistOrder.bind(this.orderHandler)}>Persist order</button>
         <button onClick={this.orderHandler.restoreOrder.bind(this.orderHandler)}>Restore last saved order</button>
         <hr />
-        <Gridifier editable={this.state.editable} sortDispersion orderHandler={this.orderHandler}>
+        <Gridifier editable={this.state.editable} sortDispersion orderHandler={this.orderHandler} ref={(c) => { this.gridComponent = c }}>
           {this.state.items}
         </Gridifier>
       </div>
@@ -64,9 +64,7 @@ class App extends React.Component {
   }
 
   addItem () {
-    const items = this.state.items
-    items.push(generateItem(1, 1, this.removeItem.bind(this)))
-    this.setState({ ...this.state, items })
+    this.setState({ ...this.state, items: [...this.state.items, generateItem(1, 1, this.removeItem.bind(this))] })
   }
 
   removeItem (itemToRemove) {

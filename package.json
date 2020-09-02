@@ -1,17 +1,17 @@
 {
   "name": "react-gridifier",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "A react wrapper for Jquery Gridifier library",
   "author": "Xavier Gouley <gxapplications@gmail.com>",
   "contributors": [],
   "license": "CC-BY-NC-SA-4.0",
   "scripts": {
-    "start": "babel-node",
-    "dist": "babel lib --out-dir dist",
-    "prepublish": "npm run lint && npm run test",
+    "start": "webpack-dev-server --config example/webpack.config.js ./example/bootstrap.jsx",
+    "dist": "babel lib --out-dir dist --compact --minified",
+    "dist:debug": "babel lib --out-dir dist --source-maps",
     "lint": "standard --verbose | snazzy",
     "test": "cross-env NODE_ENV=test mocha --require ignore-styles",
-    "validate": "npm ls"
+    "prepublish": "npm run lint && npm run test && npm run dist"
   },
   "main": "dist/index.js",
   "repository": {
@@ -78,11 +78,14 @@
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-react": "^7.10.4",
     "@babel/register": "^7.11.5",
+    "babel-loader": "^8.1.0",
     "babel-plugin-css-modules-transform": "^1.6.2",
     "chai": "^4.0.1",
     "cross-env": "^1.0.7",
+    "css-loader": "^4.2.2",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
+    "html-webpack-plugin": "^4.4.1",
     "ignore-styles": "^5.0.1",
     "jquery": "^3.2.1",
     "jsdom": "^11.0.0",
@@ -90,9 +93,13 @@
     "mocha": "^3.4.2",
     "precommit-hook": "^3.0.0",
     "react-addons-test-utils": "^16.0.0-alpha.3",
+    "react-hot-loader": "^4.12.21",
     "snazzy": "^7.0.0",
     "standard": "^14.3.4",
-    "style-loader": "^0.18.2"
+    "style-loader": "^0.18.2",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   },
   "directories": {
     "lib": "./lib",
